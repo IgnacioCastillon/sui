@@ -1,4 +1,4 @@
-package EjercicioDNI;
+package EjercicioDni;
 
 public class Persona {
     private String nombre;
@@ -49,10 +49,10 @@ public class Persona {
     }
     public boolean esMayorDeEdad(){
         if (edad>=18){
-            System.out.println(nombre+" si es mayor de edad");
+            System.out.println("\n"+nombre+" si es mayor de edad\n");
             return true;
         }else {
-            System.out.println(nombre+" no es mayor de edad");
+            System.out.println("\n"+nombre+" no es mayor de edad\n");
             return false;
         }
     }
@@ -61,14 +61,14 @@ public class Persona {
             setNombre(nombre);
             setEdad(edad);
             setDni(dni);
+            System.out.println("\nDatos Actualizados para el usuario "+nombre);
         }catch (EdadInvalidaException | DniInvalidoException e){
             System.out.println(e.getMessage());
         }
     }
 
     public void mostrarInfo(){
-        System.out.println("Nombre: "+getNombre());
-        System.out.println("Edad: "+getEdad());
-        System.out.println("Dni: "+getDni());
+        System.out.println("Nombre\t|\tEdad\t|\tDNI");
+        System.out.println(getNombre()+"\t|\t"+getEdad()+"\t\t|\t"+getDni());
     }
 }

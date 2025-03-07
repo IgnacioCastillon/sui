@@ -1,23 +1,24 @@
-package EjercicioDNI;
+package EjercicioDni;
 
 public class RegistroPersonas {
     private Persona[] personas = new Persona[10];
     int numPersonas = 0;
 
-
-
-
     public void agregarPersona(Persona p) {
-            String DNI = p.getDni();
-            if (numPersonas >2 ) {
-            for (int i = 0; i < numPersonas; i++) {
-            if (!DNI.equalsIgnoreCase(personas[i].getDni())) {
-                personas[numPersonas] = new Persona(p.getNombre(),p.getEdad(),p.getDni());
-                numPersonas++;
-            }else throw new DniDuplicadoException("ERROR: Este dni ya esta registrado.");
+        String DNI = p.getDni();
+
+        for (int i = 0; i < numPersonas; i++) {
+            if (DNI.equalsIgnoreCase(personas[i].getDni())) {
+                throw new DniDuplicadoException("\nERROR: Este DNI ya está registrado.\n");
             }
-            }else { p = new Persona(p.getNombre(),p.getEdad(),p.getDni());
-            numPersonas++;}
+        }
+
+        if (numPersonas < personas.length) {
+            personas[numPersonas] = new Persona(p.getNombre(), p.getEdad(), p.getDni());
+            numPersonas++;
+        } else {
+            throw new IllegalStateException("ERROR: No se pueden agregar más personas, el registro está lleno.");
+        }
     }
 
 
@@ -34,11 +35,10 @@ public class RegistroPersonas {
             System.out.println("No hay personas");
         }else {
             System.out.println("\nListado de personas: ");
+            System.out.println("Nombre\t|\tEdad\t|\tDNI");
             for (int i = 0; i < numPersonas; i++) {
                 if (personas[i] != null) {
-                    System.out.println(personas[i].getNombre());
-                    System.out.println(personas[i].getEdad());
-                    System.out.println(personas[i].getDni());
+                    System.out.println(personas[i].getNombre()+"\t|\t"+personas[i].getEdad()+"\t\t|\t"+personas[i].getDni());
                 }
             }
         }
