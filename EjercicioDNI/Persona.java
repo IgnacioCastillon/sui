@@ -1,4 +1,6 @@
-package EjercicioDni;
+package EjercicioDNI;
+
+import java.util.SortedMap;
 
 public class Persona {
     private String nombre;
@@ -49,10 +51,8 @@ public class Persona {
     }
     public boolean esMayorDeEdad(){
         if (edad>=18){
-            System.out.println("\n"+nombre+" si es mayor de edad\n");
             return true;
         }else {
-            System.out.println("\n"+nombre+" no es mayor de edad\n");
             return false;
         }
     }

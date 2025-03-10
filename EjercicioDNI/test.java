@@ -1,4 +1,4 @@
-package EjercicioDni;
+package EjercicioDNI;
 
 import java.util.Scanner;
 

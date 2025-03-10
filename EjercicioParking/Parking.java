@@ -1,13 +1,13 @@
 package EjercicioParking;
 
+import java.time.format.DateTimeFormatter;
+
 public class Parking {
-    private Vehiculo[] vehiculo;
+    private Vehiculo[] vehiculo = new Vehiculo[20];
     private int numVehiculos;
     private int capacidadMaxima = 0;
 
-    public Parking(Vehiculo[] vehiculo, int numVehiculos, int capacidadMaxima) {
-        this.vehiculo = vehiculo;
-        this.numVehiculos = numVehiculos;
+    public Parking(int capacidadMaxima) {
         this.capacidadMaxima = capacidadMaxima;
     }
 
@@ -35,7 +35,50 @@ public class Parking {
         this.capacidadMaxima = capacidadMaxima;
     }
 
-    public void ingresarVehicula(String matricula){
 
+
+    public void ingresarVehiculo(String matricula){
+        if (numVehiculos<capacidadMaxima) {
+            for (int i = 0; i < numVehiculos; i++) {
+                if (matricula.equalsIgnoreCase(vehiculo[i].getMatricula())) {
+                    throw new VehiculoDuplicadoException("Esta matricula ya esta registrada en el parking");
+                }
+            }
+        }
+        if (numVehiculos < capacidadMaxima) {
+            vehiculo[numVehiculos] = new Vehiculo(matricula);
+            numVehiculos++;
+            System.out.println("Vehiculo con matricula "+matricula+" ingresado exitosamente");
+        }else throw new ParkingLlenoException("Parking lleno");
+    }
+
+
+    public void salirVehiculo(String matricula){
+        for (int i=0; i<numVehiculos; i++) {
+            if (vehiculo[i].getMatricula().equals(matricula)) {
+                System.out.println("Vehiculo con matricula "+matricula+" sacado del parking");
+                int vehiculoeliminado = i;
+                vehiculo[i] = null;
+                for (int j=0; j<=numVehiculos; j++) {
+                    if (j>vehiculoeliminado) {
+                    vehiculo[j-1] = vehiculo[j];
+                        System.out.println("caca");
+                        vehiculo[j] = null;
+                    }
+                }
+                numVehiculos--;
+            }else if (i==numVehiculos-1){
+                throw new VehiculoNoEncontradoException("Vehiculo no encontrado");
+            }
+        }
+    }
+
+    public void mostrarVehiculos(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\tHH:mm:ss");
+        System.out.println("\nVehiculos en el parking:");
+        System.out.println("Matricula\t\t\t\tHora de entrada");
+        for (int i=0; i<numVehiculos; i++) {
+            System.out.println(vehiculo[i].getMatricula()+"\t\t\t\t\t\t"+vehiculo[i].getHoraEntrada().format(formatter));
+        }
     }
 }

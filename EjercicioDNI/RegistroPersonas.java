@@ -1,4 +1,4 @@
-package EjercicioDni;
+package EjercicioDNI;
 
 public class RegistroPersonas {
     private Persona[] personas = new Persona[10];
@@ -35,10 +35,14 @@ public class RegistroPersonas {
             System.out.println("No hay personas");
         }else {
             System.out.println("\nListado de personas: ");
-            System.out.println("Nombre\t|\tEdad\t|\tDNI");
+            System.out.println("Nombre\t|\tEdad\t|\tDNI\t\t\t|\tMayor de edad");
             for (int i = 0; i < numPersonas; i++) {
+                String mayorEdad;
+                if (personas[i].esMayorDeEdad()==true) {
+                    mayorEdad = "SI";
+                }else {mayorEdad = "NO";}
                 if (personas[i] != null) {
-                    System.out.println(personas[i].getNombre()+"\t|\t"+personas[i].getEdad()+"\t\t|\t"+personas[i].getDni());
+                    System.out.println(personas[i].getNombre()+"\t|\t"+personas[i].getEdad()+"\t\t|\t"+personas[i].getDni()+"\t|\t\t"+mayorEdad);
                 }
             }
         }

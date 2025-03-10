@@ -1,4 +1,4 @@
-package EjercicioDni;
+package EjercicioDNI;
 
 public class DniInvalidoException extends RuntimeException {
     public DniInvalidoException(String message) {

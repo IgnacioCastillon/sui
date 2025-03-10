@@ -11,6 +11,7 @@ public class Vehiculo {
 
     public Vehiculo(String matricula) {
         this.matricula = matricula;
+        this.horaEntrada = LocalDateTime.now();
     }
 
     public String getMatricula() {
