@@ -89,7 +89,7 @@ public class listaContactos extends JFrame {
 
     private void nuevoContacto() {
         if (nombre.getText().isEmpty() || telefono.getText().isEmpty() || email.getText().isEmpty() || categoria.getSelectedItem().toString().isEmpty()) {
-            JOptionPane.showMessageDialog(panel1, "Debe ingresar los campos");
+            JOptionPane.showMessageDialog(panel1, "Debes ingresar todos los campos correctamente.   ");
         } else {
             contactos[contador] = new Contacto(nombre.getText(),telefono.getText(),email.getText(),categoria.getSelectedItem().toString());
             contador++;
@@ -101,6 +101,7 @@ public class listaContactos extends JFrame {
                 agregados++;
             }
             vaciar();
+            JOptionPane.showMessageDialog(panel1, "Contacto guardado. Recuerde pulsar sobre 'Guardar contactos' para guardarlo en el archivo.");
         }
     }
 
@@ -121,6 +122,8 @@ public class listaContactos extends JFrame {
                     for (int i = 0; i < agregados; i++) {
                         writer.write(lineas[i] + "\n\n");
                     }
+                    JOptionPane.showMessageDialog(panel1, "Contactos guardados correctamente.");
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -135,6 +138,8 @@ public class listaContactos extends JFrame {
                     for (int i = 0; i < agregados; i++) {
                         writer.write(lineas[i] + "\n\n");
                     }
+                    JOptionPane.showMessageDialog(panel1, "Contactos guardados correctamente.");
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
